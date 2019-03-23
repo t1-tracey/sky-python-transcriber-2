@@ -1,6 +1,8 @@
 # Dash separated list of chords
 CHORD_DELIMITER = '-'
-NOTE_WIDTH = 45
+
+ICON_DELIMITER = '/'
+NOTE_WIDTH = 40
 
 ### Instrument classes
 
@@ -29,7 +31,7 @@ class Harp:
         else:
             #TODO: Implement support for breaks/empty harps
             #Define a custom InvalidLetterException
-            raise Exception('Invalid letter')
+            raise KeyError
 
     def get_row_count(self):
         return self.row_count
@@ -83,7 +85,7 @@ class Harp:
                 #Except InvalidLetterException
                 try:
                     highlighted_note_position = self.map_letter_to_position(letter)
-                except Exception:
+                except KeyError:
                     pass
                 else:
                     chord_image[highlighted_note_position] = {}
@@ -180,7 +182,7 @@ class NoteRoot:
 
         note_render = '<svg class=\"note-root ' + instrument_type + '-button-' + str(note_index) + ' \" xmlns=\"https://www.w3.org/2000/svg\" width=\"' + str(width) + '\" height=\"' + str(width) + '\" viewBox=\"0 0 91 91\">\n'
         note_render += '<path class="instrument-button ' + ' '.join(highlighted_classes).rstrip() + '" d="M90.7 76.5c0 7.8-6.3 14.2-14.2 14.2H14.2C6.4 90.7 0 84.4 0 76.5V14.2C0 6.4 6.3 0 14.2 0h62.3c7.8 0 14.2 6.3 14.2 14.2V76.5z"/>\n'
-        note_render += '<circle cx="45.5" cy="45.4" r="26" class="instrument-button-icon"/>\n'
+        note_render += '<circle cx="45.5" cy="45.4" r="26" class="instrument-button-icon"/>'
         note_render += '<rect x="19.5" y="19.3" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 109.7415 45.2438)" width="52" height="52" class="instrument-button-icon"/>\n'
         note_render += '</svg>\n'
         return note_render
@@ -213,7 +215,7 @@ class NoteCircle:
 
         note_render = '<svg class=\"note-circle ' + instrument_type + '-button-' + str(note_index) + ' \" xmlns=\"https://www.w3.org/2000/svg\" width=\"' + str(width) + '\" height=\"' + str(width) + '\" viewBox=\"0 0 91 91\">\n'
         note_render += '<path class="instrument-button ' + ' '.join(highlighted_classes).rstrip() + '" d="M90.7 76.5c0 7.8-6.3 14.2-14.2 14.2H14.2C6.3 90.7 0 84.4 0 76.5V14.2C0 6.3 6.3 0 14.2 0h62.3c7.8 0 14.2 6.3 14.2 14.2V76.5z"/>\n'
-        note_render += '<circle cx="45.4" cy="45.4" r="25.5" class="instrument-button-icon"/>\n'
+        note_render += '<circle cx="45.4" cy="45.4" r="25.5" class="instrument-button-icon"/>'
         note_render += '</svg>\n'
         return note_render
 
@@ -244,39 +246,91 @@ class NoteDiamond:
 
         note_render = '<svg class=\"note-diamond ' + instrument_type + '-button-' + str(note_index) + ' \" xmlns=\"https://www.w3.org/2000/svg\" width=\"' + str(width) + '\" height=\"' + str(width) + '\" viewBox=\"0 0 91 91\">\n'
         note_render += '<path class="instrument-button ' + ' '.join(highlighted_classes).rstrip() + '" d="M90.7 76.5c0 7.8-6.3 14.2-14.2 14.2H14.2C6.4 90.7 0 84.4 0 76.5V14.2C0 6.4 6.3 0 14.2 0h62.3c7.8 0 14.2 6.3 14.2 14.2V76.5z"/>\n'
-        note_render += '<rect x="22.6" y="22.7" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 45.3002 109.5842)" width="45.4" height="45.4" class="instrument-button-icon"/>\n'
+        note_render += '<rect x="22.6" y="22.7" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 45.3002 109.5842)" width="45.4" height="45.4" class="instrument-button-icon"/>'
         note_render += '</svg>\n'
         return note_render
 
 
 #Unit test, remove later
-note_root = NoteRoot()
+# note_root = NoteRoot()
 # print(note_root.render_from_chord_image(45, [True, False, False, False]))
 
 ### Note collection class
 
 ### Parser
 
+def parse_icon(icon, delimiter):
+
+    tokens = icon.split(delimiter)
+    return tokens
+
 def parse_line(line, delimiter):
 
-    tokens = line.split(delimiter)
-    return tokens
+    '''
+    Returns instrument_line: a list of chord images
+    '''
+
+    icons = line.split(delimiter)
+    instrument_line = []
+
+    #TODO: Implement logic for parsing line vs single icon.
+    for icon in icons:
+        chords = parse_icon(icon, CHORD_DELIMITER)
+        harp = Harp()
+        harp.parse_chords(chords)
+        instrument_line.append(harp)
+
+    return instrument_line
+
+
+def render_instrument_line(instrument_line, instrument_index):
+
+    line_render = ''
+
+    for instrument in instrument_line:
+
+        instrument_chord_image = instrument.get_chord_image()
+        instrument_render = instrument.render_from_chord_image(instrument_chord_image, NOTE_WIDTH, instrument_index)
+        instrument_index += 1
+        instrument_render += '\n\n'
+
+        line_render += instrument_render
+
+    return line_render, instrument_index
+
+def render_instrument_lines(instrument_lines):
+
+    index = 0
+
+    song_render = ''
+
+    for line in instrument_lines:
+        line_render, index = render_instrument_line(line, index)
+        song_render += line_render
+        song_render += '\n<br />\n'
+
+    return song_render
+
 
 print('NEW SONG.')
 song_title = input('Song title: ')
-print('Use QWERT ASDFG ZXCVB keys as the harp keyboard. Separate chords with \"' + CHORD_DELIMITER + '\".')
-song_line = input('Type chord(s): ')
+print('Use QWERT ASDFG ZXCVB keys as the harp keyboard. You can insert multiple chords within a single harp icon.')
+print('Separate icons with \"' + ICON_DELIMITER + '\". If you want multiple colours within an icon, separate the colours with \"' + CHORD_DELIMITER + '\".')
+song_line = input('Type line: ')
 
-instrument_list = []
+instrument_lines = [] # A list of instrument_lines
 
 while song_line:
 
-    chords = parse_line(song_line, CHORD_DELIMITER)
-    harp = Harp()
-    harp.parse_chords(chords)
+    instrument_line = parse_line(song_line, ICON_DELIMITER)
 
-    instrument_list.append(harp)
-    song_line = input('Type chord(s): ')
+    instrument_lines.append(instrument_line)
+
+    song_line = input('Type line: ')
+
+original_artists = input('Original artist(s): ')
+transcript_writer = input('Transcribed by: ')
+recommended_key = input('Recommended key: ')
 
 # Render the song
 
@@ -286,14 +340,22 @@ with open(song_title + '.html', 'w+') as song_file:
     song_file.write('<head> <title>' + song_title + '</title> <link href="main.css" rel="stylesheet" /> </head>\n')
 
     song_file.write('<body>\n')
-    song_file.write('<h1> ' + song_title + ' </h1>')
+    song_file.write('<h1> ' + song_title + ' </h1>\n')
 
-    for instrument_index, instrument in enumerate(instrument_list):
+    if original_artists:
+        song_file.write('<p> <b>Original Artist(s):</b> ' + original_artists + ' </p>\n')
+    if transcript_writer:
+        song_file.write('<p> <b> Transcript:</b> ' + transcript_writer + ' </p>\n')
+    if recommended_key:
+        song_file.write('<p> <b> Recommended key:</b> ' + recommended_key + ' </p>\n')
 
-        instrument_chord_image = instrument.get_chord_image()
-        instrument_render = instrument.render_from_chord_image(instrument_chord_image, NOTE_WIDTH, instrument_index)
-        song_file.write(instrument_render + '\n\n')
+    song_file.write('<div id="transcript">\n\n')
 
+
+    song_file.write(render_instrument_lines(instrument_lines))
+
+
+    song_file.write('</div>\n')
     song_file.write('</body>\n')
 
     song_file.write('</html>\n')
