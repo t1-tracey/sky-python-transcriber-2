@@ -3,7 +3,7 @@ This produces sheet music in HTML for the musical instruments in Sky. You can us
 
 You can see live examples at https://t1-tracey.github.io/sky-music-examples 
 
-![the road of trials in Sky SVG piano icons]()
+![the road of trials in Sky SVG piano icons](https://raw.githubusercontent.com/t1-tracey/sky-python-transcriber-2/master/images/road-of-trials-sneak-peek.png)
 
 Sky Python Transcriber 2 supports SVG icons for harp. Thanks to madwurmz for SVGs, and thanks to everyone for support <3
 
@@ -23,7 +23,7 @@ cd Desktop/sky-transcriber
 
 3. To run the program, type. `python3 transcriber.py` on Mac, or `python transcriber.py` on Windows.
 
-![terminal-with-instructions.png](https://github.com/t1-tracey/sky-python-transcriber/blob/master/images/terminal-with-instructions.png)
+![terminal-with-instructions.png](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/terminal-desktop-directory.png)
 
 # Cheatsheet
 
