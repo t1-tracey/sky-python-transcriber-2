@@ -13,7 +13,9 @@ Sky: Light Awaits is an upcoming game by thatgamecompany, currently in beta and 
 
 1. Click the green <kbd>Clone or Download</kbd> button in the top right, and then Download ZIP.
 
-2. Save the folder to your Desktop and rename it. For the next command, I have the file saved on my Desktop and I've renamed the folder to `sky-transcriber`. Open a Terminal and type:
+2. Save the folder to a location such as your Desktop and rename it. For the next command, I have the file saved on my Desktop and I've renamed the folder to `sky-transcriber`. 
+
+Open a Terminal and change directory to where the folder is — here I would type:
 
 ```
 cd Desktop/sky-transcriber
@@ -25,18 +27,23 @@ cd Desktop/sky-transcriber
 
 # Cheatsheet
 
+## Basics 
 - Use QWERT, ASDFG, ZXCVB as the music keyboard. 
 - You can use spaces to separate each block of notes. 
 - Press Enter each time you want to start transcribing a new line.
 
 ![sky-python-transcriber-cli](https://github.com/t1-tracey/sky-python-transcriber/blob/master/images/sky-python-transcriber-cli.png)
 
+- Press Enter on a blank line to finish the song. There'll be a file named `(your-song-name).html` in the folder on your Desktop, or whatever folder location you've chosen. Double click on it to open.
+
+## Extras
+
 - Use periods to indicate blank block of notes.
 
-- Use dashes for extra colours in a note.
+- Use dashes for to separate sets of colours within a block.
 
-Press Enter on a blank line to finish the song.
 
-The author, original transcriber and key are optional. You can press Enter to skip these.  
 
-There'll be a file named `(your-song-name).html` in the folder on your Desktop, or whatever folder location you've chosen. Double click on it to open. Voila :blush:
+- The author, original transcriber and key are optional. You can press Enter to skip these.  
+
+
