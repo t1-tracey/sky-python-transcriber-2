@@ -21,7 +21,7 @@ Open a Terminal and change directory to where the folder is — here I would typ
 cd Desktop/sky-transcriber
 ```
 
-3. To run the program, type. `python3 sky-python-transcriber.py` on Mac, or `python skytranscriber.py` on Windows.
+3. To run the program, type. `python3 transcriber.py` on Mac, or `python transcriber.py` on Windows.
 
 ![terminal-with-instructions.png](https://github.com/t1-tracey/sky-python-transcriber/blob/master/images/terminal-with-instructions.png)
 
