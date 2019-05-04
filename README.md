@@ -1,4 +1,4 @@
-# sky-python-transcriber-2
+# Sky Python Transcriber 2
 This produces sheet music in HTML for the musical instruments in Sky. You can use the QWERT ASDFG ZXCVB as the piano. You can see examples at https://t1-tracey.github.io/sky-music-examples 
 
 ![the road of trials in Sky SVG piano icons](https://raw.githubusercontent.com/t1-tracey/sky-python-transcriber-2/master/images/road-of-trials-sneak-peek.png)
