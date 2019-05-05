@@ -13,13 +13,13 @@ Sky: Light Awaits is an upcoming game by thatgamecompany, currently in beta and 
 
 2. Save the folder to a location such as your Desktop and rename it. For the next command, I have the file saved on my Desktop and I've renamed the folder to `sky-transcriber`.
 
-Open a Terminal and change directory to where the folder is — here I would type:
+3. To run the program, open a Terminal and change directory to where the folder is — here I would type:
 
 ```
 cd Desktop/sky-transcriber
 ```
 
-3. To run the program, type. `python3 transcriber.py` on Mac, or `python transcriber.py` on Windows.
+Then type `python3 transcriber.py` on Mac, or `python transcriber.py` on Windows.
 
 ![terminal-with-instructions.png](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/terminal-desktop-directory.png)
 
