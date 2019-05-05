@@ -346,6 +346,8 @@ while song_line:
 
     song_line = input('Type line: ')
 
+print('============')
+print('Press ENTER to skip the following.')
 original_artists = input('Original artist(s): ')
 transcript_writer = input('Transcribed by: ')
 recommended_key = input('Recommended key: ')
