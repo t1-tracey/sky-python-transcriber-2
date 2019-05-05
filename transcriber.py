@@ -45,6 +45,8 @@ class Harp:
             #TODO: Implement support for breaks/empty harps
             #Define a custom InvalidLetterException
             raise KeyError
+        else:
+            raise KeyError
 
     def get_row_count(self):
         return self.row_count
@@ -281,7 +283,7 @@ def parse_line(line, delimiter):
     '''
     Returns instrument_line: a list of chord images
     '''
-
+    #TODO: HAVENT accounted for double spaces and trailing/leading spaces
     icons = line.split(delimiter)
     instrument_line = []
 
