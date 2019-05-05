@@ -1,8 +1,18 @@
 # Dash separated list of chords
 CHORD_DELIMITER = '-'
 
-ICON_DELIMITER = '/'
+ICON_DELIMITER = ' '
 NOTE_WIDTH = 40
+
+BLANK_ICON = '.'
+
+### Define Errors
+class Error(Exception):
+    """Base class for exceptions in this module."""
+    pass
+
+class BlackIconError(Error):
+    pass
 
 ### Instrument classes
 
@@ -28,7 +38,10 @@ class Harp:
         letter = letter.upper()
         if letter in keyboard_position_map.keys():
             return keyboard_position_map[letter] # Expecting a tuple
-        else:
+        #elif letter == BLANK_ICON:
+        #    print(letter)
+        #    raise BlankIconError
+        elif letter == BLANK_ICON:
             #TODO: Implement support for breaks/empty harps
             #Define a custom InvalidLetterException
             raise KeyError
@@ -250,7 +263,6 @@ class NoteDiamond:
         note_render += '</svg>\n'
         return note_render
 
-
 #Unit test, remove later
 # note_root = NoteRoot()
 # print(note_root.render_from_chord_image(45, [True, False, False, False]))
@@ -312,10 +324,14 @@ def render_instrument_lines(instrument_lines):
     return song_render
 
 
-print('NEW SONG.')
+print('==NEW SONG==')
 song_title = input('Song title: ')
-print('Use QWERT ASDFG ZXCVB keys as the harp keyboard. You can insert multiple chords within a single harp icon.')
-print('Separate icons with \"' + ICON_DELIMITER + '\". If you want multiple colours within an icon, separate the colours with \"' + CHORD_DELIMITER + '\".')
+print('============')
+print('Use QWERT ASDFG ZXCVB keys as the harp keyboard.')
+print('Separate blocks of notes with \"' + ICON_DELIMITER + '\".')
+print('Use \"' + BLANK_ICON + '\" for a blank block.')
+print('If you want multiple colours within an icon, separate the colours with \"' + CHORD_DELIMITER + '\".')
+print('============')
 song_line = input('Type line: ')
 
 instrument_lines = [] # A list of instrument_lines
