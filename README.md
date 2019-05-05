@@ -44,7 +44,7 @@ cd Desktop/sky-transcriber
 
 ![Mary Had A Little Lamb render](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/mary-had-a-little-lamb-render.png)
 
-- Use dashes for to separate sets of colours within a block.
+- Use dashes to separate sets of colours within a block.
 
 
 
