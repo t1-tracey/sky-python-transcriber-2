@@ -31,7 +31,7 @@ cd Desktop/sky-transcriber
 - Press Enter each time you want to start transcribing a new line.
 
 ![Up and Down song example in Terminal with Q W E R T keys](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/up-and-down-song-example.png)
-![Up and Down song render](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/up-and-down-render.png)
+![Up and Down song render](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/up-and-down-song-render.png)
 
 - Press Enter on a blank line to finish the song. There'll be a file named `(your-song-name).html` in the folder on your Desktop, or whatever folder location you've chosen. Double click on it to open.
 
