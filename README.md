@@ -46,6 +46,8 @@ Then type `python3 transcriber.py` on Mac, or `python transcriber.py` on Windows
 
 - Use dashes to separate sets of colours within a block.
 
+![Dashes to separate colours in CLI](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/colours-cli.png)
 
+![Coloured blocks of notes render](https://github.com/t1-tracey/sky-python-transcriber-2/blob/master/images/colours-render.png)
 
 - The author, original transcriber and key are optional. You can press Enter to skip these.  
